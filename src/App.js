@@ -10,6 +10,7 @@ function App() {
             {text:'456'},
             {text:'789'},
         ]}/>
+        <Panel items={null}/>
     </div>
   );
 }
