@@ -6,7 +6,7 @@ import addSvg from "../../assets/add.svg";
 import * as React from "react";
 import './AddForm.scss'
 
-const AddForm = () => {
+const AddForm = ({isEmptyPanel}) => {
     const [showForm, setShowForm] = useState(false);
     const textareaRef = useRef(null)
 
@@ -30,11 +30,13 @@ const AddForm = () => {
                 ? <div className='add-form'>
                     <div className="add-form__input">
                         <Card>
-                            <textarea placeholder='Введите значение карточки' ref={textareaRef} rows="3"></textarea>
+                            <textarea placeholder={!isEmptyPanel ? 'Введите название колонки' : 'Введите название карточки'}
+                                      ref={textareaRef}
+                                      rows="3"/>
                         </Card>
                         <div className="add-form__bottom">
                             <Button>
-                                Добавить карточку
+                                {!isEmptyPanel ? 'Добавить колонку' : 'Добавить карточку'}
                             </Button>
                             <img onClick={closeForm} className='add-form__bottom-clear' src={clearSvg} alt="Clear svg icon"/>
                         </div>
@@ -43,7 +45,7 @@ const AddForm = () => {
                 : <div className='panel__bottom'>
                     <div className='panel__bottom-add-btn'>
                         <img onClick={openForm} src={addSvg} alt="Add svg icon"/>
-                        <span>Добавить еще одну карточку</span>
+                        <span>{!isEmptyPanel ? 'Добавить еще одну колонку' : 'Добавить еще одну карточку'}</span>
                     </div>
                 </div>}
         </Fragment>
