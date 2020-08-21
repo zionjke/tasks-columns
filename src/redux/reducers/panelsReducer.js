@@ -20,7 +20,10 @@ const panelsReducer = (state = InitialState, action) => {
         case 'PANELS:ADD':
             return {
                 ...state,
-                items: action.payload
+                items: [...state.items,{
+                    title:action.payload,
+                    cards: []
+                }]
             };
         case 'CARDS:ADD':
             return {
@@ -35,7 +38,13 @@ const panelsReducer = (state = InitialState, action) => {
                         return item
                     }
                 })
+            };
+        case 'PANELS:DELETE':
+            return {
+                ...state,
+                items: state.items.filter((item,index) => action.payload !== index)
             }
+
     }
     return state
 };
