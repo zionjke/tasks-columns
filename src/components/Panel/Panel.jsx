@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import AddForm from "../AddForm/AddForm";
 import classNames from 'classnames'
 import removeSvg from '../../assets/remove.svg'
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 
 const Panel = ({cards,title,addPanel,addCard,panelIndex,deletePanel}) => {
@@ -18,7 +19,8 @@ const Panel = ({cards,title,addPanel,addCard,panelIndex,deletePanel}) => {
         <div className={classNames('panel',{
             'panel--empty': !cards
         })}>
-            {cards && <div className='panel__remove'>
+            {cards &&
+            <div className='panel__remove'>
                 <img onClick={onDeletePanel} src={removeSvg} alt="remove svg"/>
             </div> }
             {title
